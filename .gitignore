@@ -435,3 +435,4 @@ testem.log
 Thumbs.db
 client/dist
 /client/.vscode/launch.json
+/backend/src/local.settings.json
