@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Pz.Cheeseria.Api</name>
+    </assembly>
+    <members>
+        <member name="M:Pz.Cheeseria.Api.Controllers.CheesesController.GetCheesesbyId(System.Int32)">
+            <summary>
+            Get all cheese by Id
+            </summary>
+            <param name="id">id of the cheese to get</param>
+            <returns></returns>
+            <response code="200">OK</response>
+        </member>
+    </members>
+</doc>
