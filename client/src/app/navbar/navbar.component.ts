@@ -14,7 +14,8 @@ export class NavbarComponent implements OnInit {
   cartTotal: number;
   _message: string;
   products: Cheese[];
-
+  msg:string;
+  msg1:string;
   store: any = [];
   logo: any;
 
@@ -56,4 +57,27 @@ export class NavbarComponent implements OnInit {
       0
     );
   }
+
+  //purchase cart item
+ Purchase(id: number) {
+  // this.msg='Button is clicked';
+  // return this.msg; 
+  console.log('Purchase Cart');
+  console.log(id);
+  this.cartService.PurchaseCart(id);
+}
+
+
+  //recent purchase button
+  //open dialog
+  openRecentPurchaseDialog() {
+    this.msg1='Recent Purchase Button is clicked';
+   return this.msg1;  
+ //  const dialogRef = this.dialog.open(DialogContentExampleDialog);
+ //  dialogRef.afterClosed().subscribe(result => {
+ //    console.log(`Dialog result: ${result}`);
+ //   });
+ }
+
+
 }

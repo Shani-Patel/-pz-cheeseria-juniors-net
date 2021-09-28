@@ -1,12 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { ProductsService } from '../_services/cheeses.service';
 import { CartService } from '../_services/cart.service';
+import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
+
 
 @Component({
   selector: 'app-cheeses-tab',
   templateUrl: './cheeses-tab.component.html',
   styleUrls: ['./cheeses-tab.component.css'],
 })
+
+
 export class CheesesTabComponent implements OnInit {
   cheeses: [] = [];
   products: [] = [];
@@ -17,9 +21,11 @@ export class CheesesTabComponent implements OnInit {
   serverMsg: string;
   errorMsg: any;
   currency: Object;
+  msg:string;
   constructor(
     private productService: ProductsService,
-    private cartService: CartService
+    private cartService: CartService,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit() {
@@ -36,4 +42,22 @@ export class CheesesTabComponent implements OnInit {
     console.log(id);
     this.cartService.AddProductToCart(id);
   }
+
+
+    //open dialog
+     openDialog() {
+       this.msg='Button is clicked';
+      return this.msg;  
+    //  const dialogRef = this.dialog.open(DialogContentExampleDialog);
+    //  dialogRef.afterClosed().subscribe(result => {
+    //    console.log(`Dialog result: ${result}`);
+    //   });
+    }
 }
+
+// @Component({
+//   selector: 'dialog-content-example-dialog',
+//   templateUrl: './dialog-content-example-dialog.html'
+// })
+
+//  export class DialogContentExampleDialog {}
