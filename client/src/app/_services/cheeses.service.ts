@@ -19,8 +19,6 @@ export class ProductsService {
 
   setCart(id: Number): Observable<any> {
     let endpoint = '/v1/dbo/cheese/' + id
-    const url123 = this.http.put(this.server_url + endpoint , id);
-    console.log(url123)
-    return url123
+    return this.http.put(this.server_url + endpoint , id);
   }
 }
