@@ -43,36 +43,26 @@ export class CartService {
     // console.log(this.cartDataClient);
   }
 
-
-  // Cart API Call
-  setCart(): Observable<any> {
-    return this.http.post(this.server_url + '/cheeses/');
-  }
-
   //on Purchase button click
   PurchaseCart(id: Number) {
     // if not in cart
     const stringID = id.toString();
+
+    this.productsService.setCart(id)
+    // this.productsService.setCart(1).subscribe((prods) => {
+    //   this.cartData$.next(prods)
+    // })
+
     if (this.cartDataClient[stringID] === undefined) 
     {
       // add to cart
-      this.cartDataClient[stringID] = 1;
- 
-      
-      //   constructor(private http: HttpClient) {}
-      
-      //   getCheeses(): Observable<any> {
-      //     return this.http.get(this.server_url + '/cheeses');
-      //   }
-      
-
+      this.cartDataClient[stringID] = 1
     } 
     else 
     {
       this.cartDataClient[stringID]++;
     }
     this.cartDataObs$.next(this.cartDataClient);
-    // console.log(this.cartDataClient);
   }
 
   // For incrementing and decrementing items in the cart

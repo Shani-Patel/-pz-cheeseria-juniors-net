@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CartService } from '../_services/cart.service';
 import { CartModelPublic } from '../_models/cart';
 import { Cheese } from '../_models/cheese';
+//import { CreateCartService } from '../_services/createcart.service';
 
 @Component({
   selector: 'app-navbar',
@@ -58,26 +59,21 @@ export class NavbarComponent implements OnInit {
     );
   }
 
-  //purchase cart item
- Purchase(id: number) {
-  // this.msg='Button is clicked';
-  // return this.msg; 
-  console.log('Purchase Cart');
-  console.log(id);
-  this.cartService.PurchaseCart(id);
-}
+  PurchaseCart() {
+    console.log('Purchase Cart');
+    console.log();
+    this.cartService.PurchaseCart(1)
+  }
 
-
-  //recent purchase button
-  //open dialog
-  openRecentPurchaseDialog() {
-    this.msg1='Recent Purchase Button is clicked';
-   return this.msg1;  
- //  const dialogRef = this.dialog.open(DialogContentExampleDialog);
- //  dialogRef.afterClosed().subscribe(result => {
- //    console.log(`Dialog result: ${result}`);
- //   });
- }
-
-
-}
+    //recent purchase button
+    //open dialog
+    openRecentPurchaseDialog() {
+      this.msg1='Recent Purchase Button is clicked';
+     return this.msg1;  
+   //  const dialogRef = this.dialog.open(DialogContentExampleDialog);
+   //  dialogRef.afterClosed().subscribe(result => {
+   //    console.log(`Dialog result: ${result}`);
+   //   });
+   }
+  
+  }
