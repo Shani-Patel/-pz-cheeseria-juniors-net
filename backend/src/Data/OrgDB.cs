@@ -10,13 +10,15 @@ namespace Pz.Cheeseria.Api.Data
         }
 
         public DbSet<Cheese> Cheese { get; set; }
-        //public DbSet<Cart> Cart { get; set; }
-        //public DbSet<Orders> Orders { get; set; }
+        public DbSet<Cart> Cart { get; set; }
+        public DbSet<Orders> Orders { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //modelBuilder.Entity<Cheese>().ToTable("Cheese");
+            modelBuilder.Entity<Cheese>().ToTable("Cheese");
+            modelBuilder.Entity<Cart>().ToTable("Cart");
+            modelBuilder.Entity<Orders>().ToTable("Orders");
         }
     }
 }

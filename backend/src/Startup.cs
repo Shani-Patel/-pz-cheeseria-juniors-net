@@ -5,9 +5,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Pz.Cheeseria.Api.Data;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Reflection;
-using System.IO;
 using Microsoft.OpenApi.Models;
 using Pz.Cheeseria.Api.Controllers;
 using Pz.Cheeseria.Api.Models;
@@ -20,7 +17,7 @@ namespace Pz.Cheeseria.Api
     {
         public IHostingEnvironment HostingEnvironment { get; }
 
-        public Startup(IConfiguration configuration, Microsoft.AspNetCore.Hosting.IHostingEnvironment env)
+        public Startup(IConfiguration configuration, IHostingEnvironment env)
         {
             Configuration = configuration;
             HostingEnvironment = env;
@@ -32,19 +29,15 @@ namespace Pz.Cheeseria.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-
+       
+            services.AddDbContext<DbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddDbContext<OrgDB>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDatabaseDeveloperPageExceptionFilter();
-            //services.MvcOptions.EnableEndpointRouting = false;
-            //services.AddSwaggerGen();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Pz Cheeseria Api V1", Version = "v1", });
-                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-                c.IncludeXmlComments(xmlPath);
             });
+            services.AddScoped<DbContext, OrgDB>();
             services.AddScoped<ICheeseService, CheeseService>();
             services.AddScoped<IOrgDbContext, OrgDbContext>();
         }
@@ -71,7 +64,6 @@ namespace Pz.Cheeseria.Api
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Pz Cheeseria Api V1");
-                //c.RoutePrefix = string.Empty;
             });
             app.UseHttpsRedirection();
             app.UseRouting();

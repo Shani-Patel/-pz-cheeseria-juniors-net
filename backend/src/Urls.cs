@@ -16,7 +16,7 @@ namespace Pz.Cheeseria.Api
 
                 public class Cheese
                 {
-                    //public const string GetById = Prefix + "/cheese/{id}";
+                    public const string GetCheesesbyId = Prefix + "/getCheese/{id}";
                     public const string SetCart = Prefix + "/cheese/{id}";
                 }
             }

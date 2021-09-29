@@ -8,6 +8,8 @@ namespace Pz.Cheeseria.Api.Controllers
     {
         Task<List<Cheese>> GetCheese();
 
-        Task<List<Cheese>> CreateCart(CreateCartRequest request);
+        Task CreateCart(CreateCartRequest request);
+
+        Task<Cheese> GetCheeseById(int id);
     }
 }

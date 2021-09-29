@@ -8,6 +8,6 @@ namespace Pz.Cheeseria.Api.Models
 
         public int TotalQuantity { get; set; }
 
-        public int TotalPrice { get; set; }
+        public decimal TotalPrice { get; set; }
     }
 }

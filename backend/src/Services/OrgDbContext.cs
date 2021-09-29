@@ -4,7 +4,7 @@ using Pz.Cheeseria.Api.Models;
 
 namespace Pz.Cheeseria.Api.Services
 {
-    internal class OrgDbContext : IOrgDbContext
+    public class OrgDbContext : IOrgDbContext
     {
         private readonly DbContextOptions<OrgDB> _options;
 
